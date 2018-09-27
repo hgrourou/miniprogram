@@ -1,1 +1,5 @@
 /* pages/test/test.wxss */
+.image-info {
+  text-align: center;
+  
+}

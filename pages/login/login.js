@@ -1,13 +1,15 @@
 // pages/login/login.js
-const config = getApp().globalData.urlConfig
+let app = getApp()
+const config = app.globalData.urlConfig
+const fetch = require('../../utils/fetch.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username: 'zhiniu_test',
-    password: 'aaa'
+    username: '092501',
+    password: 'qq123456'
   },
 
   login (username, password) {
@@ -15,18 +17,33 @@ Page({
       title: '加载中...',
     })
     let url = config.loginUrl
-    wx.request({
-      url,method: 'POST',
+    fetch({
+      url,
+      method: 'POST',
       data: {
         username,
         password
-      },
-      success: function (res) {
-        console.log(res)
-      },
-      fail: function () {
+      }
+    })
+    .then((data) => {
+      wx.hideLoading()
+      if (data.code === 200) {
+        let tenantInfo = {
+          token: data.token,
+          tenantId: data.tenantId,
+          tenantName: data.tenantName,
+          username: data.username,
+        }
+        wx.setStorage({
+          key: 'tenantInfo',
+          data: tenantInfo
+        })
+        wx.switchTab({
+          url: '/pages/me/me',
+        })
+      } else {
         wx.showToast({
-          title: '网路开小差，请稍后再试',
+          title: data.status,
           icon: 'none',
         })
       }
@@ -51,8 +68,6 @@ Page({
       })
       return
     }
-    console.log(username)
-    console.log(password)
     this.login(username, password)
   },
 

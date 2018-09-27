@@ -35,8 +35,11 @@ App({
   },
   globalData: {
     userInfo: null,
+    tenantInfo: null,
     urlConfig: {
-      loginUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/auth'
+      loginUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/auth',
+      meUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/user/me', // 个人中心页面获取用户信息接口
+      changePasswordUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/user/changePass',  // 个人中心修改密码
     }
   }
 })

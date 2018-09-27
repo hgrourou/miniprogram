@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    message: 'Hello, Small red flower',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')

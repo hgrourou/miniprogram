@@ -1,1 +1,18 @@
-<view class="title">{{userInfo}}</view>
+<view class="wrapper">
+  <view class="image-info">
+    <image src="/img/user/user.png" width="36"></image>
+    <view>{{tenantName}}</view>
+    <view>{{email}}</view>
+  </view>
+  <rich-text name="h3">修改密码</rich-text>
+  <view>
+    <form class='form' bindsubmit='submit'>
+      <view>
+        <input name='oldPassword' placeholder='旧密码' password='true'></input>
+        <input name='password' placeholder='新密码' password='true'></input>
+        <input name='repeatPassword' placeholder='重复新密码' password='true'></input>
+      </view>
+      <button class='login' formType='submit'>登录</button>
+    </form>
+  </view>
+</view>

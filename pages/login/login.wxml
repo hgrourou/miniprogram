@@ -1,0 +1,12 @@
+<rich-text name="h1" class="title">
+  <!-- 智牛商户系统 -->
+</rich-text>
+<view class="login-form">
+  <form class='form' bindsubmit='submit'>
+    <view>
+      <input class="input-username" name='username' placeholder='请输入用户名' value="{{username}}" focus></input>
+      <input class="input-password" name='password' placeholder='密码' value="{{password}}" password='true'></input>
+    </view>
+    <button class='login' formType='submit'>登录</button>
+  </form>
+</view>

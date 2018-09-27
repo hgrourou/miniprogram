@@ -4,15 +4,10 @@ const app = getApp()
 
 Page({
   data: {
-    message: 'Hello small red flower',
+    message: 'Hello, Small red flower',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  gototest () {
-    wx.navigateTo({
-      url: '../me/me'
-    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -43,12 +38,11 @@ Page({
     }
     let timeout = setTimeout(function () {
       wx.navigateTo({
-        url: '../me/me'
+        url: '../login/login'
       })
-    }, 3000)
+    },0)
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

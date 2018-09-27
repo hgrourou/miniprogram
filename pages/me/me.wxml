@@ -1,1 +1,1 @@
-<view class=""></view>
+<view class="title">{{userInfo}}</view>

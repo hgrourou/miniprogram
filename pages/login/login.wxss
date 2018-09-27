@@ -1,0 +1,21 @@
+/* pages/login/login.wxss */
+.title {
+  font-size: 24px;
+  text-align: center;
+}
+.login-form {
+  margin-top: 50rpx;
+  margin-left: 50rpx;
+}
+.input-username {
+  border: 1px solid #888;
+  width: 60%;
+}
+.input-password {
+  border: 1px solid #888;
+  width: 60%;
+  margin-top: 35rpx;
+}
+.login {
+  margin-top: 35rpx;
+}

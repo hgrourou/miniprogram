@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    urlConfig: {
+      loginUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/auth'
+    }
   }
 })

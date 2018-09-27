@@ -1,3 +1,4 @@
+const app = getApp()
 // pages/test/test.js
 Page({
 
@@ -5,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    userInfo: app.globalData.userInfo
   },
 
   /**

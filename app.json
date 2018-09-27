@@ -2,12 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/me/me",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "dEMO",
+    "navigationBarTitleText": "Demo",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -22,7 +23,7 @@
       },
       {
         "pagePath": "pages/me/me",
-        "text": "我的"
+        "text": "个人中心"
       }
     ],
     "color": "#abb4bf",

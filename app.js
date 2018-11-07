@@ -1,4 +1,5 @@
 //app.js
+const BASE_URL = 'http://172.20.11.16:8080'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -33,13 +34,15 @@ App({
       }
     })
   },
+  
   globalData: {
     userInfo: null,
     tenantInfo: null,
     urlConfig: {
-      loginUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/auth',
-      meUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/user/me', // 个人中心页面获取用户信息接口
-      changePasswordUrl: 'http://tieniu3rdtest.zhiniutech.com.cn/rest/user/changePass',  // 个人中心修改密码
+      loginUrl: BASE_URL + '/user/login',
+      registUrl: BASE_URL + '/user/register',
+      signUrl: BASE_URL + '/user/sign',
+      userDetailUrl: BASE_URL + '/user'
     }
   }
 })

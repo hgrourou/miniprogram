@@ -2,10 +2,9 @@ let app = getApp()
 function fetch ({url, method, data, header}) {
   data = data || {}
   header = header || {}
-  // let token = app.globalData.tenantInfo.token
-  let tenantInfo = wx.getStorageSync('tenantInfo')
-  if (tenantInfo) {
-    header['x-auth-token'] = tenantInfo.token
+  let token = wx.getStorageSync('token')
+  if (token) {
+    header['x-auth-token'] = token
   }
   wx.showNavigationBarLoading()
   let promise = new Promise(function (resolve, reject) {
@@ -15,7 +14,7 @@ function fetch ({url, method, data, header}) {
       data,
       method,
       success: function (res) {
-        if (res.data.code === 200) {
+        if (res.statusCode === 200) {
           resolve(res.data)
         } else {
           resolve(res.data)

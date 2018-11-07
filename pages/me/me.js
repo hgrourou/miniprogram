@@ -1,4 +1,5 @@
 const app = getApp()
+const config = app.globalData.urlConfig
 const fetch = require('../../utils/fetch.js')
 // pages/test/test.js
 Page({
@@ -7,9 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tenantName: '',
-    email: '',
-    loginName: ''
   },
 
   /**
@@ -17,68 +15,41 @@ Page({
    */
   getUserInfo () {
     let self = this
-    let url = app.globalData.urlConfig.meUrl
-    fetch({
-      url,
-      method: 'GET',
-    })
-    .then((data) => {
-      this.setData({
-        tenantName: data.data.name,
-        email: data.data.email,
-        loginName: data.data.loginName
-      })
-    })
+    let url = app.globalData.urlConfig.userDetailUrl
   },
 
   /**
-   * 提交表单
+   * 签到
    */
-  submit (e) {
-    let values = e.detail.value
-    let oldPassword = values.oldPassword || ''
-    let password = values.password || ''
-    let repeatPassword = values.repeatPassword || ''
-    if (!oldPassword.replace(/\s+/g, '')) {
-      wx.showToast({
-        title: '请输入密码',
-        icon: 'none',
-      })
-      return
-    }
-    if (!password.replace(/\s+/g, '')) {
-      wx.showToast({
-        title: '请输入新密码',
-        icon: 'none',
-      })
-      return
-    }
-    if (!repeatPassword.replace(/\s+/g, '')) {
-      wx.showToast({
-        title: '请重复输入新密码',
-        icon: 'none',
-      })
-      return
-    }
-    this.changePass({
-      oldPassword,
-      newPassword: password
+  signin () {
+    wx.showLoading({
+      title: '加载中...',
     })
-  },
-
-  changePass({oldPassword, newPassword}) {
-    let url = app.globalData.urlConfig.changePasswordUrl
-    fetch ({
+    let url = config.signUrl
+    fetch({
       url,
-      method: 'POST',
-      data: {
-        loginName: this.data.loginName,
-        oldPassword,
-        newPassword 
+      method: 'POST'
+    }).then((data) => {
+      wx.hideLoading()
+      if (data.message.code === 200) {
+        wx.showToast({
+          title: "签到成功",
+          icon: 'success',
+          duration: 2000
+        })
+      } else if (data.message.code === 5) {
+        wx.showToast({
+          title: "您今天已经签到",
+          icon: 'success',
+          duration: 2000
+        })
+      } else {
+        wx.showToast({
+          title: "系统异常,请稍后再试",
+          icon: 'success',
+          duration: 2000
+        })
       }
-    })
-    .then((data) => {
-
     })
   },
 

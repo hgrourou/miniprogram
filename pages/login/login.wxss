@@ -4,18 +4,32 @@
   text-align: center;
 }
 .login-form {
-  margin-top: 50rpx;
+  width: 100%;
+  margin-top: 40%;
   margin-left: 50rpx;
+  margin-right: 50rpx;
 }
 .input-username {
   border: 1px solid #888;
-  width: 60%;
+  width: 80%;
 }
 .input-password {
   border: 1px solid #888;
-  width: 60%;
+  width: 80%;
   margin-top: 35rpx;
 }
+.btn-area {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 50rpx;
+}
 .login {
-  margin-top: 35rpx;
+  width: 30%;
+  margin: 0;
+}
+.register {
+  width: 30%;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
 }

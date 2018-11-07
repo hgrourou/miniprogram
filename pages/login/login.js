@@ -2,51 +2,63 @@
 let app = getApp()
 const config = app.globalData.urlConfig
 const fetch = require('../../utils/fetch.js')
+var util = require('../../utils/md5.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username: '092501',
-    password: 'qq123456'
+    username: '',
+    password: ''
   },
 
-  login (username, password) {
+  login (number, password) {
     wx.showLoading({
       title: '加载中...',
     })
     let url = config.loginUrl
+    password = util.hexMD5(password)
     fetch({
       url,
       method: 'POST',
       data: {
-        username,
+        number,
         password
       }
     })
     .then((data) => {
       wx.hideLoading()
-      if (data.code === 200) {
-        let tenantInfo = {
-          token: data.token,
-          tenantId: data.tenantId,
-          tenantName: data.tenantName,
-          username: data.username,
-        }
+      if (data.message.code === 200) {
         wx.setStorage({
-          key: 'tenantInfo',
-          data: tenantInfo
+          key: 'token',
+          data: data.payload.user.accessToken
         })
         wx.switchTab({
           url: '/pages/me/me',
         })
+      } else if (data.message.code === 401) {
+        wx.showToast({
+          title: "账号密码错误",
+          icon: 'none',
+        })
+      } else if (data.message.code === 4) {
+        wx.showToast({
+          title: "用户不存在",
+          icon: 'none',
+        })
       } else {
         wx.showToast({
-          title: data.status,
+          title: "系统异常,请稍后再试!",
           icon: 'none',
         })
       }
+    }, () => {
+      wx.hideLoading()
+      wx.showToast({
+        title: "系统异常,请稍后再试!",
+        icon: 'none',
+      })
     })
   },
 
@@ -69,6 +81,15 @@ Page({
       return
     }
     this.login(username, password)
+  },
+
+  /**
+   * 跳转到注册页面
+   */
+  turnToRegisterPage () {
+    wx.navigateTo({
+      url: '/pages/register/register'
+    })
   },
 
   /**

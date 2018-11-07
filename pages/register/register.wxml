@@ -1,0 +1,26 @@
+<!--pages/message/message.wxml-->
+<form class='form' bindsubmit='submit'>
+    <view class="item">
+      <label>工号</label>
+      <input class="input" placeholder='请输入工号' bindinput="inputgetName" data-name='registerInfo.number'  value="{{registerInfo.number}}"></input>
+    </view>
+    <view class="item">
+      <label>姓名</label>
+      <input class="input" placeholder='请输入姓名' bindinput="inputgetName" data-name='registerInfo.name' value="{{registerInfo.name}}"></input>
+    </view>
+    <view class="item">
+      <label>电话</label>
+      <input class="input" placeholder='请输入电话号码' bindinput="inputgetName" data-name='registerInfo.phone' value="{{registerInfo.phone}}"></input>
+    </view>
+    <view class="item">
+      <label>密码</label>
+      <input class="input" placeholder='请输入密码' password='true' bindinput="inputgetName" data-name='registerInfo.originPassword' value="{{registerInfo.originPassword}}"></input>
+    </view>
+    <view class="item">
+      <label>重复密码</label>
+      <input class="input" placeholder='请重新输入密码'  password='true' bindinput="inputgetName" data-name='registerInfo.repeatPassword' value="{{registerInfo.repeatPassword}}"></input>
+    </view>
+    <view class="btn-area">
+      <button class='register' bindtap="register">注册</button>
+    </view>
+  </form>
